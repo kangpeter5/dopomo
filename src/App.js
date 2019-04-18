@@ -32,16 +32,40 @@ class App extends Component {
     })
   }
 
+  removeItems = event => {
+    event.preventDefault()
+    this.setState(prevState => {
+      return {
+        todos: prevState.todos.filter(todo => {
+          return !todo.completed
+        })
+      }
+    })
+  }
+
+  toggleComplete = itemId => {
+    const todos = this.state.todos.map(todo => {
+      if (todo.id === itemId){
+        todo.completed = !todo.completed
+      }
+      return todo
+    })
+    this.setState({todos, todo: ''})
+  }
+
   render() {
     return (
       <div className="App">
         <h1>To-Do</h1>
         <TodoList
-          todos={this.state.todos} />
+          todos={this.state.todos}
+          toggleComplete={this.toggleComplete} />
         <TodoForm
           todos={this.state.todos} 
           value={this.state.todo}
-          inputChangeHandler={this.inputChangeHandler} />
+          inputChangeHandler={this.inputChangeHandler} 
+          addTask={this.addTask} 
+          removeItem={this.removeItems} />
       </div>
     );
   }
