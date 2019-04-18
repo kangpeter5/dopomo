@@ -1,25 +1,47 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import TodoList from './components/TodoComponent/TodoList'
+import TodoForm from './components/TodoComponent/TodoForm'
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      todos: [{
+        //task:
+        //id:
+        //completed:false
+      }],
+      todo: ''
+    }
+  }
+
+  inputChangeHandler = event => {
+    this.setState({[event.target.name]: event.target.value})
+  }
+
+  addTask = event => {
+    event.preventDefault();
+    let newTask = {
+      task: this.state.todo,
+      id: Date.now(),
+      completed: false,
+    }
+    this.setState({
+      todos: [...this.state.todos, newTask],
+      todo:''
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>To-Do</h1>
+        <TodoList
+          todos={this.state.todos} />
+        <TodoForm
+          todos={this.state.todos} 
+          value={this.state.todo}
+          inputChangeHandler={this.inputChangeHandler} />
       </div>
     );
   }
