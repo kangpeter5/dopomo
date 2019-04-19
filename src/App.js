@@ -137,6 +137,18 @@ class App extends Component {
       };
     })
   }
+  resetTimer = () => {
+    this.setState(prevState => {
+      return{
+        restMinutes: 5,
+        workMinutes: 25,
+        seconds: 0,
+        break: false,
+        start: false,
+        interval: clearInterval(prevState.interval),
+      }
+    })
+  } 
   
   render() {
     return (
@@ -159,7 +171,8 @@ class App extends Component {
           start={this.state.start}
           break={this.state.break}
           startTimer={this.startTimer}
-          pauseTimer={this.pauseTimer}/>
+          pauseTimer={this.pauseTimer}
+          resetTimer={this.resetTimer}/>
       </div>
     )
   }
