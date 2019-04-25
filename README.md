@@ -1,6 +1,13 @@
 # dopomo
 Productivity App consisting of Pomodoro Technique with a To-Do list
 
+Pomodoro is a cyclical system. You work in short sprints , which makes sure you're consistently productive. You also get to take regular breaks that bolster your motivation and keep you creative.
+1.    Choose a task to be accomplished.
+2.    Set the Pomodoro to 25 minutes (the Pomodoro is the timer)
+3.    Work on the task until the Pomodoro rings, then put a check on your sheet of paper
+4.    Take a short break (5 minutes is OK)
+5.    Every 4 Pomodoros take a longer break
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
