@@ -1,4 +1,6 @@
-<<<<<<< HEAD
+# dopomo
+Productivity App consisting of Pomodoro Technique with a To-Do list
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -67,7 +69,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-=======
-# dopomo
-Productivity App consisting of Pomodoro Technique with a To-Do list
->>>>>>> origin/master
