@@ -6,7 +6,6 @@ export default function Pomodoro() {
     const [relax, setRelax] = useState(false)
     const [paused, setPaused] = useState(true)
 
-
     // need to add STEP 5 'Every 4 Pomodoros take a longer break'
     useEffect(() => {
         const int = setInterval(() => {
@@ -48,7 +47,7 @@ export default function Pomodoro() {
         return () => {
             clearInterval(int)
         }
-    }, [paused, relax])
+    }, [paused, relax, pomo])
 
     // Control Functions
     function startTimer() {
@@ -63,12 +62,14 @@ export default function Pomodoro() {
         setRelax(false)
     }
 
+    //using https://codepen.io/ryanparag/pen/JVmmgv
     return (
         <>
-            <h1>{relax ? 'Take a Break' : "Let's Work!"}</h1>
-            <p>{`${Math.floor(seconds / 60)}:${("00" + (seconds % 60)).slice(-2)}`}</p>
-            <button onClick={paused ? startTimer : pauseTimer}>{paused ? 'Start' : 'Pause'}</button>
-            <button onClick={resetTimer}>Reset</button>
+            <h3>{!relax ? "Time to Work!" : 'Take a Break' }</h3>
+            <h1>{`${Math.floor(seconds / 60)}:${("00" + (seconds % 60)).slice(-2)}`}</h1>
+            <p>{pomo < 3 ? `${pomo} pomo completed` : `${pomo} pomos completed. 1 more until you can take a 20 minute break`}</p>
+            <button onClick={paused ? startTimer : pauseTimer}>{paused ? 'Start Timer' : 'Pause Timer'}</button>
+            <button onClick={resetTimer}>Reset Timer</button>
         </>
     )
 }
