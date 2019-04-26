@@ -22,9 +22,13 @@ export default function App() {
   return (
     // State.Provider passes the state and dispatcher to the down
     <Store.Provider value={{ state, dispatch }}>
-      <TodoForm />
-      <TodoList />
-      <Pomodoro />
+      <section>
+        <TodoForm />
+        <TodoList />
+      </section>
+      <section>
+        <Pomodoro />
+      </section>
     </Store.Provider>
   )
 }
