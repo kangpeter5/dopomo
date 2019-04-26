@@ -1,0 +1,153 @@
+// FONT
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700');
+$noto-sc: Noto Sans SC, sans-serif;
+
+// COLORS
+// https://coolors.co/5bc0eb-fde74c-9bc53d-fa7921-d64141
+$red: #e61f1f;
+$blue: #5bc0eb;
+$green: #9bc53d;
+$yellow: #fde74c;
+//primary
+//$primary: ;
+//secondary
+//$secondary: ;
+//tertiary
+
+// Design Token Maps
+$states: (
+	primary: primary,
+	success: success,
+	danger: danger,
+	warning: warning,
+	info: info,
+	default: default
+);
+
+$spacing-unit: 8px;
+
+$spacing: (
+	xs: $spacing-unit/2,
+	sm: $spacing-unit,
+	md: $spacing-unit*2,
+	lg: $spacing-unit*4,
+	xl: $spacing-unit*8,
+);
+
+$border-radius: (
+	sm: .3rem,
+	md: .5rem,
+	lg: .7rem
+);
+
+$text-sizes: (
+	xs: .67em,
+	sm: .78em,
+	md: var(--root--text-size),
+	lg: 1.22em,
+	xl: 1.44em,
+	xxl: 2em,
+);
+
+$elevation: (
+	0: 0,
+	1: 0px 0px 0px 1px rgba(black, .1),
+	2: 0px 3px 6px -1px rgba(black, .1),
+	3: 0px 5px 12px -2px rgba(black, .1),
+	4: 0px 12px 25px -4px rgba(black, .1),
+	5: 0px 18px 36px -6px rgba(black, .1)
+);
+
+// Functions
+@function text-size($size) {
+	@if(map-get($text-sizes, $size)) {
+		@return map-get($text-sizes, $size);
+	}
+	@else {
+		@warn "That spacing size does not exist."
+	}
+}
+
+@function spacing($size) {
+	@if(map-get($spacing, $size)) {
+		@return map-get($spacing, $size);
+	}
+	@else {
+		@warn "That spacing size does not exist."
+	}
+}
+
+@function border-radius($size) {
+	@if(map-get($border-radius, $size)) {
+		@return map-get($border-radius, $size);
+	}
+	@else {
+		@warn "That radius size does not exist."
+	}
+}
+
+@function shadow($size) {
+	@if(map-get($elevation, $size)) {
+		@return map-get($elevation, $size);
+	}
+	@else {
+		@warn "That elevation size does not exist."
+	}
+}
+
+//BASE
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  font: 100% $noto-sc;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  max-width: 800px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+section {
+  float: left;
+  width: 50%;
+}
+
+// BUTTONS
+button{
+  font: 100% $noto-sc;
+  border: 0;
+	border-radius: border-radius(sm);
+	padding: spacing(xs) spacing(md);
+  font-size: text-size(md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  text-align: center;
+  transition: all 120ms;
+  opacity: 0.7;
+}
+.btn-done {
+  background: linear-gradient(to right, #F37A65, #e61f1f);
+  color: #fff;
+  box-shadow: shadow(2), shadow(3);
+  text-shadow: 0px 2px 2px hsla(0, 0, 0, .6);
+
+  &:hover,
+  &:focus {
+    background: linear-gradient(to right, #E58F8F, #e61f1f);
+  }
+}
+
+@media screen and (max-width: 420px) {
+  section {
+    float: none;
+    width: 100%;
+  }
+}

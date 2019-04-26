@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react'
 
 export default function Pomodoro() {
     const [pomo, setPomo] = useState(0)
-    const [seconds, setSeconds] = useState(.1*60)
+    const [seconds, setSeconds] = useState(25*60)
     const [relax, setRelax] = useState(false)
     const [paused, setPaused] = useState(true)
 
@@ -29,10 +29,10 @@ export default function Pomodoro() {
                             setPomo(pomo => pomo + 1)
 
                             if(pomo < 3){ // After 4 Pomodoros take a break
-                                setSeconds(7)
+                                setSeconds(5*60)
                             }else{
                                 setPomo(0)
-                                setSeconds(9)
+                                setSeconds(30*60)
                             }
                             startTimer()
                         }else{
@@ -58,7 +58,7 @@ export default function Pomodoro() {
     }
     function resetTimer() {
         setPaused(true)
-        setSeconds(.1*60)
+        setSeconds(25*60)
         setRelax(false)
     }
 
@@ -68,8 +68,8 @@ export default function Pomodoro() {
             <h3>{!relax ? "Time to Work!" : 'Take a Break' }</h3>
             <h1>{`${Math.floor(seconds / 60)}:${("00" + (seconds % 60)).slice(-2)}`}</h1>
             <p>{pomo < 3 ? `${pomo} pomo completed` : `${pomo} pomos completed. 1 more until you can take a 20 minute break`}</p>
-            <button onClick={paused ? startTimer : pauseTimer}>{paused ? 'Start Timer' : 'Pause Timer'}</button>
-            <button onClick={resetTimer}>Reset Timer</button>
+            <button className="btn-action" onClick={paused ? startTimer : pauseTimer}>{paused ? 'Start' : 'Pause'}</button>
+            <button className="btn-danger" onClick={resetTimer}>Reset</button>
         </>
     )
 }

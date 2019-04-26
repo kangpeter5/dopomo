@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import Store from "../context"
+import './TodoList.scss'
 
 export default function TodoList() {
   const { state, dispatch } = useContext(Store)
@@ -14,7 +15,7 @@ export default function TodoList() {
     ) : (
       <div className="row">
         <div className="col">
-          <h5>Todo List</h5>
+          <h2>Todo List</h2>
         </div>
         <div className="col">
           <span className="indicator">{pluralize(state.todos.length)}</span>
