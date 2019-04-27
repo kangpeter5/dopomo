@@ -2,17 +2,105 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700');
 $noto-sc: Noto Sans SC, sans-serif;
 
-// COLORS
 // https://coolors.co/5bc0eb-fde74c-9bc53d-fa7921-d64141
-$red: #e61f1f;
-$blue: #5bc0eb;
-$green: #9bc53d;
-$yellow: #fde74c;
-//primary
-//$primary: ;
-//secondary
-//$secondary: ;
-//tertiary
+// CSS Variables
+////////////////
+// COLORS
+:root {
+	--blue: #408FEC;
+	--blue--accent: #A1CAFA;
+	--blue--light: #8EBDF1;
+	--blue--lightest: #F6FAFF;
+
+	--purple: #79589F;
+	--purple--accent: #AC8ECE;
+	--purple--light: #A997BF;
+	--purple--lightest: #F7F3FB;
+	
+	--green: #74C080;
+	--green--accent: #ADE28F;
+	--green--light: #ABD7B4;
+	--green--lightest: #F8FCF9;
+	
+	--orange: #FA9F47;
+	--orange--accent: #FFD3A0;
+	--orange--light: #FBC595;
+	--orange--lightest: #FFFAF6;
+	
+	--red: #D64141;
+	--red--accent: #F37A65;
+	--red--light: #E58F8F;
+	--red--lightest: #FDF6F6;
+	
+	--gray--1000: #14171B;
+	--gray--900: #24292e;
+	--gray--800: #2f363d;
+	--gray--700: #444d56;
+	--gray--600: #586069;
+	--gray--500: #6a737d;
+	--gray--400: #959da5;
+	--gray--300: #d1d5da;
+	--gray--200: #e1e4e8;
+	--gray--100: #f6f8fa;
+	
+	--black: #000000;
+	--white: #ffffff;
+
+	--black--50: rgba(0,0,0,.5);
+	--black--20: rgba(0,0,0,.2);
+	--black--10: rgba(0,0,0,.1);
+	--black--5: rgba(0,0,0,.05);
+	
+	--brand--dark: #211746;
+	--brand: #430098;
+	--brand--light: #7673C0;
+	
+	--accent--dark: #032E61;
+	--accent: var(--blue);
+	--accent--light: var(--blue--light);
+	
+	--primary: var(--purple);
+	--primary--accent: var(--purple--accent);
+	--primary--light: var(--purple--light);
+	
+	--danger: var(--red);
+	--danger--accent: var(--red--accent);
+	--danger--light: var(--red--light);
+	
+	--warning: var(--orange);
+	--warning--accent: var(--orange--accent);
+	--warning--light: var(--orange--light);
+	
+	--success: var(--green);
+	--success--accent: var(--green--accent);
+	--success--light: var(--green--light);
+	
+	--info: var(--blue);
+	--info--accent: var(--blue--accent);
+	--info--light: var(--blue--light);
+	
+	--default: var(--gray--600);
+	--default--accent: var(--gray--600);
+	--default--light: var(--gray--500);
+	
+	--root--bg: var(--gray--100);
+	--root--color: var(--gray--900);
+	--root--color-secondary: var(--gray--700);
+	--root--font: 'Yantramanav';
+	--root--text-size: 1rem; // 16px
+	
+	--component--bg: var(--white);
+	--component--bg-accent: var(--gray--100);
+}
+
+:root.theme--dark {
+	--root--bg: var(--gray--1000);
+	--root--color: var(--gray--100);
+	--root--color-secondary: var(--gray--400);
+	
+	--component--bg: var(--gray--900);
+	--component--bg-accent: var(--gray--800);
+}
 
 // Design Token Maps
 $states: (
@@ -52,10 +140,10 @@ $text-sizes: (
 $elevation: (
 	0: 0,
 	1: 0px 0px 0px 1px rgba(black, .1),
-	2: 0px 3px 6px -1px rgba(black, .1),
-	3: 0px 5px 12px -2px rgba(black, .1),
-	4: 0px 12px 25px -4px rgba(black, .1),
-	5: 0px 18px 36px -6px rgba(black, .1)
+	2: 0px 3px 6px 1px rgba(black, .1),
+	3: 0px 5px 12px 2px rgba(black, .1),
+	4: 0px 12px 25px 4px rgba(black, .1),
+	5: 0px 18px 36px 6px rgba(black, .1)
 );
 
 // Functions
@@ -66,7 +154,7 @@ $elevation: (
 	@else {
 		@warn "That spacing size does not exist."
 	}
-}
+};
 
 @function spacing($size) {
 	@if(map-get($spacing, $size)) {
@@ -75,7 +163,7 @@ $elevation: (
 	@else {
 		@warn "That spacing size does not exist."
 	}
-}
+};
 
 @function border-radius($size) {
 	@if(map-get($border-radius, $size)) {
@@ -84,7 +172,7 @@ $elevation: (
 	@else {
 		@warn "That radius size does not exist."
 	}
-}
+};
 
 @function shadow($size) {
 	@if(map-get($elevation, $size)) {
@@ -93,10 +181,9 @@ $elevation: (
 	@else {
 		@warn "That elevation size does not exist."
 	}
-}
+};
 
-//BASE
-
+// BASE
 body {
   margin: 0 auto;
   padding: 0;

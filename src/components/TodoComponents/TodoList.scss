@@ -1,5 +1,8 @@
+@import '../../index.scss';
+
 .list-group{
     margin: auto;
+    padding: 0;
 }
 
 .list-group-item {
@@ -8,7 +11,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: shadow(1);
+    //box-shadow: shadow(1);
     position: relative;
     transition: all 120ms ease-out 0s;
 
