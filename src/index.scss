@@ -202,6 +202,11 @@ code {
 section {
   float: left;
   width: 50%;
+
+  @media screen and (max-width: 768px){
+	  float: none!important;
+	  width: 100%;
+  }
 }
 
 // BUTTONS

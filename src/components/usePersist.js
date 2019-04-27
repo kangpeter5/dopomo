@@ -6,6 +6,7 @@ export function usePersistedContext(context, key = "state"){
 }
 
 export function usePersistedReducer([state, dispatch], key = "state"){
+    // eslint-disable-next-line
     useEffect(() => localStorage.setItem(key, JSON.stringify(state)), [state])
     return [state, dispatch]
 }
