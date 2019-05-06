@@ -11,14 +11,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    //box-shadow: shadow(1);
     position: relative;
-    transition: all 120ms ease-out 0s;
+    @include transition(all 120ms ease-out 0s);
 
     &:hover,
     &:focus {
         box-shadow: shadow(2), shadow(4);
-		transform: scale(1.05);
+		@include transform(scale(1.05));
 		z-index: 10;
 		border-radius: border-radius(sm);
     }

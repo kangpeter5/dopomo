@@ -1,17 +1,37 @@
 @import '../../index.scss';
 
-.c-form-field {
-	width: 100%;
+.input-group {
+	display: block;
 	margin-bottom: 16px;
-	&__label {
+	margin: 0 spacing(md) spacing(sm);
+	padding: spacing(sm) spacing(md);
+
+	&:after{
+		content: "";
+		clear: both;
+		height: 0;
+		visibility: hidden;
+		display: block;
+	}
+
+	label {
 		font-weight: 700;
 		font-size: 12px;
 		display: inline-block;
 		margin-bottom: spacing(sm);
 	}
-	&__input {
-		display: block;
-		width: 100%;
+
+	input,
+	button{
+		@include mq('tablet-wide'){
+			width: 100%;
+		}
+	}
+
+	input {
+		float: left;
+		width: 68%;
+		margin-right: spacing(sm);
 		border-radius: border-radius(md);
 		padding: spacing(sm) spacing(md);
 		border: 0;
@@ -21,6 +41,7 @@
 		box-shadow: shadow(1);
 		background: var(--component--bg-accent);
 		transition: all 120ms ease-out 0s;
+
 		&::placeholder {
 			opacity: .4;
 			color: inherit;
@@ -29,5 +50,10 @@
 			outline: 0;
 			box-shadow: 0px 0px 0px 2px var(--primary);
 		}
+	}
+
+	button{
+		float: left;
+		width: 20%;
 	}
 }

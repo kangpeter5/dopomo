@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Store from '../context'
+import './TodoForm.scss'
 
 export default function TodoForm() {
     const { dispatch } = useContext(Store)
@@ -33,7 +34,7 @@ export default function TodoForm() {
                         onKeyUp={handleSubmitForm}
                         onChange={handleTodoChange}
                     />
-                    <button className="btn" onClick={handleTodoAdd}>Add</button>
+                    <button className="btn--primary" onClick={handleTodoAdd}>Add</button>
                 </div>
             </div>
         </div>

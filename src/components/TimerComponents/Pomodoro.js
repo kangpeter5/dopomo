@@ -70,8 +70,8 @@ export default function Pomodoro() {
             <h3>{!relax ? "Time to Work!" : 'Take a Break' }</h3>
             <h1>{`${Math.floor(seconds / 60)}:${("00" + (seconds % 60)).slice(-2)}`}</h1>
             <p>{pomo < 3 ? `${pomo} pomo completed` : `${pomo} pomos completed. 1 more until you can take a 20 minute break`}</p>
-            <button className="btn-action" onClick={paused ? startTimer : pauseTimer}>{paused ? 'Start' : 'Pause'}</button>
-            <button className="btn-danger" onClick={resetTimer}>Reset</button>
+            <button className="btn--primary" onClick={paused ? startTimer : pauseTimer}>{paused ? 'Start' : 'Pause'}</button>
+            <button className="btn--danger" onClick={resetTimer}>Reset</button>
         </section>
     )
 }

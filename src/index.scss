@@ -51,17 +51,17 @@ $noto-sc: Noto Sans SC, sans-serif;
 	--black--10: rgba(0,0,0,.1);
 	--black--5: rgba(0,0,0,.05);
 	
-	--brand--dark: #211746;
-	--brand: #430098;
-	--brand--light: #7673C0;
+	--brand--dark: var(--blue);
+	--brand: var(--blue);
+	--brand--light: var(--blue--light);
 	
 	--accent--dark: #032E61;
 	--accent: var(--blue);
 	--accent--light: var(--blue--light);
 	
-	--primary: var(--purple);
-	--primary--accent: var(--purple--accent);
-	--primary--light: var(--purple--light);
+	--primary: var(--blue);
+	--primary--accent: var(--blue--accent);
+	--primary--light: var(--blue--light);
 	
 	--danger: var(--red);
 	--danger--accent: var(--red--accent);
@@ -75,9 +75,9 @@ $noto-sc: Noto Sans SC, sans-serif;
 	--success--accent: var(--green--accent);
 	--success--light: var(--green--light);
 	
-	--info: var(--blue);
-	--info--accent: var(--blue--accent);
-	--info--light: var(--blue--light);
+	--info: var(--purple);
+	--info--accent: var(--purple--accent);
+	--info--light: var(--purple--light);
 	
 	--default: var(--gray--600);
 	--default--accent: var(--gray--600);
@@ -182,6 +182,157 @@ $elevation: (
 		@warn "That elevation size does not exist."
 	}
 };
+//
+//  Responsive
+// -----------------------
+
+$breakpoints: (
+    "phone":        400px,
+    "phone-wide":   480px,
+    "phablet":      560px,
+    "tablet-small": 640px,
+    "tablet":       768px,
+    "tablet-wide":  1024px,
+    "desktop":      1248px,
+    "desktop-wide": 1440px
+);
+@mixin mq($width, $type: max) {
+    @if map_has_key($breakpoints, $width) {
+        $width: map_get($breakpoints, $width);
+        @if $type == max {
+            $width: $width - 1px;
+        }
+        @media only screen and (#{$type}-width: $width) {
+            @content;
+        }
+    }
+}
+
+//
+//  Mixins
+// ------------------------
+
+@mixin clearfix(){
+	content: "";
+	clear: both;
+	height: 0;
+	visibility: hidden;
+	display: block;
+}
+@mixin clear(){
+	&:after{
+		@include clearfix();
+	}
+}
+@mixin center($position: absolute){
+	position: $position;
+	top: 50%;
+	left: 50%;
+	@include translate(-50%,-50%);
+}
+
+@mixin dont-show-text(){
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	display: block;
+}
+@mixin fill-parent(){
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+@mixin absolute-center(){
+	@include fill-parent();
+	margin: auto;
+}
+@mixin size($width, $height){
+	width	: $width;
+	height	: $height;
+}
+@mixin square($size){
+	width	: $size;
+	height	: $size;
+}
+@mixin backface(){
+	-ms-backface-visibility     : hidden;
+	-webkit-backface-visibility	: hidden;
+	-moz-backface-visibility	: hidden;
+	backface-visibility			: hidden;
+}
+@mixin background-treatment($size: contain, $pos: #{"center center"}){
+	background-size: $size;
+	background-position: $pos;
+	background-repeat: no-repeat;
+}
+@mixin outer-container(){
+	width: 100%;
+	max-width: 1200px;
+	padding: 0 15px;
+	margin: 0 auto;
+}
+@mixin white-border($width){
+	border: $width solid #FFF;
+}
+@mixin aspect-ratio($width, $height){
+	position: relative;
+	
+  &:before {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 0;
+    padding-top: ($height / $width) * 100%;
+  }
+}
+// transition, transform, scale, rotate, etc  //
+@mixin transition($transition){
+	-webkit-transition	: $transition;
+	-moz-transition		: $transition;
+	-ms-transition		: $transition;
+	-o-transition		: $transition;
+	transition			: $transition;
+    //@include backface();
+}
+@mixin transform($transform){
+	-webkit-transform	: $transform;
+	-moz-transform		: $transform;
+	-ms-transform		: $transform;
+	-o-transform		: $transform;
+	transform			: $transform;
+}
+@mixin scale($factor){
+	@include transform(scale($factor));
+}
+@mixin rotate($degrees){  //  use:  @include rotate(15deg); ie, explicitly include units
+	@include transform(rotate($degrees));
+}
+@mixin rotateY($degrees){
+	@include transform(rotateY($degrees));
+}
+@mixin translate($x, $y){
+	@include transform(translate($x, $y));
+}
+@mixin translate3d($x, $y, $z: 0){
+	-ms-transform: translate($x, $y);
+	@include transform(translate3d($x, $y, $z));
+}
+@mixin transform-origin($o){
+	-webkit-transform-origin	: $o;
+	-moz-transform-origin		: $o;
+	-ms-transform-origin		: $o;
+	-o-transform-origin			: $o;
+	transform-origin			: $o;
+}
+@mixin translate-center-h(){
+	-ms-transform: translate(-50%, 0);
+	@include translate3d(-50%, 0, 0);
+}
+
+// END MIXINS
+//------------------------------
 
 // BASE
 body {
@@ -202,11 +353,11 @@ code {
 section {
   float: left;
   width: 50%;
-
-  @media screen and (max-width: 768px){
+	
+	@include mq('tablet-wide'){
 	  float: none!important;
 	  width: 100%;
-  }
+	}
 }
 
 // BUTTONS
@@ -222,24 +373,46 @@ button{
   justify-content: center;
   height: auto;
   text-align: center;
-  transition: all 120ms;
-  opacity: 0.7;
-}
-.btn-done {
-  background: linear-gradient(to right, #F37A65, #e61f1f);
+	opacity: 0.7;
   color: #fff;
   box-shadow: shadow(2), shadow(3);
-  text-shadow: 0px 2px 2px hsla(0, 0, 0, .6);
+}
+.btn{
+	@include transition(all 120ms);
+	
+	&--primary{
+		background: linear-gradient(to right, var(--primary), var(--primary--light));
 
-  &:hover,
-  &:focus {
-    background: linear-gradient(to right, #E58F8F, #e61f1f);
-  }
+		&:hover,
+		&:focus {
+			background: linear-gradient(to right, var(--primary), var(--primary));
+		}
+	}
+	&--success{
+		background: linear-gradient(to right, var(--success), var(--success--light));
+	
+		&:hover,
+		&:focus {
+			background: linear-gradient(to right, var(--success), var(--success));
+		}
+	}
+	&--danger{
+		box-shadow: none;
+		border-radius: 0;
+		border-bottom: 2px solid var(--danger--light);
+		color: var(--danger);
+
+		&:hover,
+		&:focus {
+			border-bottom: 2px solid var(--danger);
+		}
+	}
 }
 
-@media screen and (max-width: 420px) {
-  section {
-    float: none;
-    width: 100%;
-  }
+
+@include mq('phone-wide'){
+	section {
+		float: none!important;
+		width: 100%;
+	}
 }

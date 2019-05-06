@@ -34,7 +34,7 @@ export default function TodoList() {
             <li key={t} className="list-group-item">
               {t}
               <button 
-                className="btn-done" 
+                className="btn--success" 
                 style={{ marginLeft: 10 }} 
                 onClick={() => dispatch({ type: "COMPLETE", payload: t })} 
               >
