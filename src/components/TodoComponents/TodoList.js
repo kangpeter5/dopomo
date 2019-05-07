@@ -14,18 +14,14 @@ export default function TodoList() {
       <h4>Ya done! Take a break!</h4>
     ) : (
       <>
-        <div className="col">
-          <h2>Todo List</h2>
-        </div>
-        <div className="col">
-          <span className="indicator">{pluralize(state.todos.length)}</span>
-        </div>
+        <h2>Todo List</h2>
+        <span className="indicator">{pluralize(state.todos.length)}</span>
       </>
     )
 
   return (
     <>
-      <div className="row">
+      <div className="todo-header">
         {TodoHeader}
       </div>
       <div className="row">

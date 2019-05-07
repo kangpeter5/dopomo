@@ -66,7 +66,7 @@ export default function Pomodoro() {
 
     //using https://codepen.io/ryanparag/pen/JVmmgv
     return (
-        <section className="pomodoro">
+        <section className="pomodoro container">
             <h3>{!relax ? "Time to Work!" : 'Take a Break' }</h3>
             <h1>{`${Math.floor(seconds / 60)}:${("00" + (seconds % 60)).slice(-2)}`}</h1>
             <p>{pomo < 3 ? `${pomo} pomo completed` : `${pomo} pomos completed. 1 more until you can take a 20 minute break`}</p>

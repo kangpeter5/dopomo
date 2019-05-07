@@ -1,10 +1,8 @@
-@import '../../index.scss';
+//@import '../../index.scss';
 
 .input-group {
 	display: block;
-	margin-bottom: 16px;
-	margin: 0 spacing(md) spacing(sm);
-	padding: spacing(sm) spacing(md);
+	margin: 16px auto;
 
 	&:after{
 		content: "";
@@ -18,28 +16,24 @@
 		font-weight: 700;
 		font-size: 12px;
 		display: inline-block;
-		margin-bottom: spacing(sm);
+		margin-bottom: 8px;
 	}
 
 	input,
 	button{
-		@include mq('tablet-wide'){
-			width: 100%;
-		}
+		float: left;
 	}
 
 	input {
-		float: left;
-		width: 68%;
-		margin-right: spacing(sm);
-		border-radius: border-radius(md);
-		padding: spacing(sm) spacing(md);
+		width: calc(100% - 160px);
+		border-radius: .5rem;
+		padding: 8px 16px;
 		border: 0;
 		font-family: inherit;
 		font-weight: inherit;
 		color: inherit;
-		box-shadow: shadow(1);
-		background: var(--component--bg-accent);
+		box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+		background: #f6f8fa;
 		transition: all 120ms ease-out 0s;
 
 		&::placeholder {
@@ -48,12 +42,11 @@
 		}
 		&:focus, &:active {
 			outline: 0;
-			box-shadow: 0px 0px 0px 2px var(--primary);
+			box-shadow: 0px 0px 0px 2px #408FEC;
 		}
 	}
 
 	button{
-		float: left;
-		width: 20%;
+		margin-left: 8px;
 	}
 }

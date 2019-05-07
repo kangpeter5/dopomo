@@ -23,20 +23,16 @@ export default function TodoForm() {
     }
 
     return (
-        <div className="row">
-            <div className="col">
-                <div className="input-group">
-                    <input 
-                        type="text"
-                        value={todo}
-                        autoFocus={true}
-                        placeholder="Enter new Todo"
-                        onKeyUp={handleSubmitForm}
-                        onChange={handleTodoChange}
-                    />
-                    <button className="btn--primary" onClick={handleTodoAdd}>Add</button>
-                </div>
-            </div>
+        <div className="input-group container">
+            <input 
+                type="text"
+                value={todo}
+                autoFocus={true}
+                placeholder="Enter new Todo"
+                onKeyUp={handleSubmitForm}
+                onChange={handleTodoChange}
+            />
+            <button className="btn--primary" onClick={handleTodoAdd}>Add</button>
         </div>
     )
 }
