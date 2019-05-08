@@ -1,8 +1,9 @@
 //@import '../../index.scss';
 
 .input-group {
-	display: block;
-	margin: 16px auto;
+	//display: block;
+	margin: 32px auto;
+	padding: 0 16px;
 
 	&:after{
 		content: "";
