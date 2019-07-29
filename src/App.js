@@ -20,7 +20,7 @@ export default function App() {
   )
 
   return (
-    // State.Provider passes the state and dispatcher to the down
+    // State.Provider passes the state and dispatcher to the dom
     <Store.Provider value={{ state, dispatch }}>
       <Pomodoro />
       <section className="todo-container">
